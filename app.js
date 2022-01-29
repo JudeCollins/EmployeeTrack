@@ -174,6 +174,32 @@ function viewAll() {
         });
     });
   }
+ //creating department
+  function createDep() {
+    
+    inquirer
+      .prompt([
+        {
+          name: "name",
+          type: "input",
+          message: "What is the department name?",
+        },
+      ])
+      .then(function (answer) {
+        
+        connection.query(
+          "INSERT INTO department SET ?",
+          {
+            name: answer.name,
+          },
+          function (err) {
+            if (err) throw err;
+            console.log(`You have created a department ${answer.name}.`)
+            questions();
+          }
+        );
+      });
+  }
   
   
  
