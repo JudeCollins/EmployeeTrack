@@ -200,6 +200,71 @@ function viewAll() {
         );
       });
   }
+
+  //role created
+  function createRole() {
+    connection.query(
+      "SELECT department.name, department.id FROM employee_trackerDB.department",
+      function (err, res) {
+        if (err) throw err;
+  
+        inquirer
+          .prompt([
+            {
+              name: "choice",
+              type: "list",
+              choices: function () {
+                var choiceArray = [];
+                var choiceArrayID = [];
+                for (var i = 0; i < res.length; i++) {
+                  choiceArray.push(res[i].name);
+                  choiceArrayID.push(res[i].id);
+                }
+                return choiceArray;
+              },
+              message: "Which Department?",
+            },
+            {
+              name: "title",
+              type: "input",
+              message: "What is the role name?",
+            },
+            {
+              name: "salary",
+              type: "input",
+              message: "What is the salary?",
+            },
+          ])
+          .then(function (answer) {
+            var department_id = answer.choice;
+  
+            for (var i = 0; i < res.length; i++) {
+              if (res[i].name === answer.choice) {
+                department_id = res[i].id;
+                console.log(department_id);
+              }
+            }
+  
+            connection.query(
+              "INSERT INTO role SET ?",
+              {
+                title: answer.title,
+                salary: answer.salary,
+                department_id: department_id,
+              },
+              function (err) {
+                if (err) throw err;
+  
+                console.log(`You have created ${answer.title} with salary of ${answer.salary} in ${department_id}.`)
+  
+                questions();
+              }
+            );
+          });
+      }
+    );
+  }
+  
   
   
  
