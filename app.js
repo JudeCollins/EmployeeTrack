@@ -341,7 +341,41 @@ function updateEmployee() {
                 for (var i = 0; i < res.length; i++) {
                   choiceArray1.push(`${res[i].first_name} ${res[i].last_name}`);
                 }
-  
+                return choiceArray1;
+            },
+            message: "Which employee do you want to change?",
+          },
+        ])
+        .then(function (answer) {
+          connection.query(
+            `SELECT role.title, role.id, role.salary
+            FROM employee_trackerDB.role`,
+
+            function (err, res4) {
+              if (err) throw err;
+
+              inquirer
+                .prompt([
+                  {
+                    name: "roleChoice",
+                    type: "list",
+                    choices: function () {
+                      var choiceArray2 = [];
+                      for (var i = 0; i < res4.length; i++) {
+                        choiceArray2.push(res4[i].title);
+                      }
+
+                      return choiceArray2;
+                    },
+                    message: "Which role do you want to apply to the employee?",
+                  },
+                ])
+                .then(function (answer2) {
+                    console.log(answer);
+
+                     // variables 
+                  var role_id, employeeId;
+
   
   
  
