@@ -47,6 +47,8 @@ To test this application please type command node app.js.
 If you have any questions about the repo, open an issue or contact Jude Collins directly 
 Jude.Collins13@yahoo.com
 
-[![Employee Tracker Picture]
+# Screenshot
+
+[![Employee Tracker video] https://watch.screencastify.com/v/tVh2rni61QPZbVSGlGSf
 
 GitHub: https://github.com/JudeCollins/EmployeeTrack
