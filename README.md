@@ -50,7 +50,7 @@ Jude.Collins13@yahoo.com
 # Screenshot/video
 
 video: https://watch.screencastify.com/v/tVh2rni61QPZbVSGlGSf
-screenshot:![](https://user-images.githubusercontent.com/91752290/151675441-e9a3db5f-2044-4ed8-a870-6c715424b7c9.png)
+![](https://user-images.githubusercontent.com/91752290/151675441-e9a3db5f-2044-4ed8-a870-6c715424b7c9.png)
 
 
 GitHub: https://github.com/JudeCollins/EmployeeTrack
