@@ -9,3 +9,11 @@ var connection = mysql.createConnection({
     password: "password",
     database: "employee_trackerDB",
   });
+
+  //  start application
+connection.connect(function (err) {
+    if (err) throw err;
+  
+    questions();
+  });
+  
