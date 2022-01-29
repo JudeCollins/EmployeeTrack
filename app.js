@@ -376,6 +376,66 @@ function updateEmployee() {
                      // variables 
                   var role_id, employeeId;
 
+                   // searching for name
+                   connection.query(
+                    `SELECT employee.first_name, employee.last_name, employee.id
+            FROM employee_trackerDB.employee`,
+
+                    function (err, res2) {
+                      if (err) throw err;
+
+                      for (var i = 0; i < res2.length; i++) {
+                        if (
+                          `${res2[i].first_name} ${res2[i].last_name}` ===
+                          answer.employeeChoice
+                        ) {
+                          employeeId = res2[i].id;
+                        }
+                      }
+                      // searching for title
+                      connection.query(
+                        `SELECT role.title, role.salary, role.id
+              FROM employee_trackerDB.role`,
+
+                        function (err, res3) {
+                          if (err) throw err;
+
+                          for (var i = 0; i < res3.length; i++) {
+                            if (`${res3[i].title}` === answer2.roleChoice) {
+                              role_id = res3[i].id;
+                            }
+                          }
+
+                          connection.query(
+                            "UPDATE employee SET ? WHERE ?",
+                            [
+                              {
+                                role_id: role_id,
+                              },
+
+                              {
+                                id: employeeId,
+                              },
+                            ],
+                            function (err) {
+                              if (err) throw err;
+                              console.log("Employee's role has been changed.");
+                              questions();
+                            }
+                          );
+                        }
+                      );
+                    }
+                  );
+                });
+            }
+          );
+        });
+    }
+  );
+}
+
+
   
   
  
