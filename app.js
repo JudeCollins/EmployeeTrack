@@ -319,6 +319,28 @@ function viewAll() {
       }
     );
   }
+
+  // update employee's role
+function updateEmployee() {
+    connection.query(
+      `SELECT employee.first_name, employee.last_name, role.salary, role.title, role.id, department.name as "Department Name"
+      FROM employee_trackerDB.employee
+      INNER JOIN role ON employee.role_id = role.id
+      INNER JOIN department ON role.department_id = department.id`,
+  
+      function (err, res) {
+        if (err) throw err;
+        console.log(res);
+        inquirer
+          .prompt([
+            {
+              name: "employeeChoice",
+              type: "list",
+              choices: function () {
+                var choiceArray1 = [];
+                for (var i = 0; i < res.length; i++) {
+                  choiceArray1.push(`${res[i].first_name} ${res[i].last_name}`);
+                }
   
   
   
